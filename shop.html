@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Impakt &amp; Shop</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--primary:#FF4A00;--dark:#111;--light:#fff;--gray:#fafafa;}
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:'Inter',sans-serif;background:#fff;color:#222;line-height:1.6}
+    nav{background:#fff;box-shadow:0 2px 4px rgba(0,0,0,.08);padding:.5rem 1rem;display:flex;justify-content:space-between;align-items:center}
+    nav ul{display:flex;gap:1rem;list-style:none}
+    nav a{font-weight:600;color:#222;text-decoration:none}
+    nav a:hover{color:var(--primary)}
+    .container{max-width:1200px;margin:auto;padding:2rem}
+    .card-grid{display:grid;gap:1.5rem;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+    .card{border:1px solid #ddd;border-radius:8px;padding:1rem;text-align:center}
+    .card img{max-width:100%;height:auto;border-radius:4px}
+    .btn{display:inline-block;background:var(--primary);color:#fff;padding:.6rem 1.2rem;border-radius:4px;margin-top:.5rem;cursor:pointer}
+    .btn:hover{background:#e64300}
+  </style>
+</head>
+<body>
+<nav>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="info.html">Info</a></li>
+    <li><a href="schedule.html">Schedule</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="shop.html">Shop</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+<div class="container">
+  <h1>Shop &amp; Payments</h1>
+  <div class="card-grid">
+    <div class="card">
+      <img src="assets/impakt logo.jpeg" alt="Impakt Logo">
+      <h3>Merch Store</h3>
+      <p>Gloves, tees, water‑bottles.</p>
+      <button class="btn">Buy Now</button>
+    </div>
+    <div class="card">
+      <img src="assets/MEMBERSHIP AND SPECIAL.png" alt="Membership">
+      <h3>Pay Here</h3>
+      <p>One‑off class payment or deposits.</p>
+      <button class="btn">Pay Here</button>
+    </div>
+    <div class="card">
+      <img src="assets/pricing and stuff.png" alt="Renewal">
+      <h3>Membership Renewal</h3>
+      <p>Keep your access active.</p>
+      <button class="btn">Renew Now</button>
+    </div>
+  </div>
+</div>
+<footer>
+  <p>© 2026 Impakt Sports &amp; Fitness – Cape Town</p>
+</footer>
+</body>
+</html>

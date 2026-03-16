@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Impakt &amp; Info</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root{--primary:#FF4A00;--dark:#111;--light:#fff;--gray:#fafafa;}
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:'Inter',sans-serif;background:#fff;color:#222;line-height:1.6}
+    nav{background:#fff;box-shadow:0 2px 4px rgba(0,0,0,.08);padding:.5rem 1rem;display:flex;justify-content:space-between;align-items:center}
+    nav ul{display:flex;gap:1rem;list-style:none}
+    nav a{font-weight:600;color:#222;text-decoration:none}
+    nav a:hover{color:var(--primary)}
+    .container{max-width:1200px;margin:auto;padding:2rem}
+    .coach-grid{display:grid;gap:1.5rem;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+    .coach-card{border:1px solid #ddd;border-radius:8px;overflow:hidden;box-shadow:0 2px 6px rgba(0,0,0,.07)}
+    .coach-card img{width:100%;height:200px;object-fit:cover}
+    .coach-card .info{padding:.8rem}
+    .video-wrapper{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;max-width:100%;margin-top:1rem}
+    .video-wrapper iframe{position:absolute;top:0;left:0;width:100%;height:100%}
+  </style>
+</head>
+<body>
+<nav>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="info.html">Info</a></li>
+    <li><a href="schedule.html">Schedule</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="shop.html">Shop</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+<div class="container">
+  <h1>About Impakt Sports &amp; Fitness</h1>
+  <p>Impakt is a fully‑functional MMA gym offering boxing, kickboxing, BJJ, Muay‑Thai, and MMA classes. Open 6 am – 9 pm daily (closed Sundays). Located at <strong>123 Main Road, Cape Town, South Africa 🇿🇦</strong>.</p>
+  
+  <h2>Our Coaches</h2>
+  <div class="coach-grid">
+    <div class="coach-card">
+      <img src="assets/BOXING COACH T.jpg" alt="Coach T – Boxing"/>
+      <div class="info"><strong>Coach T</strong><br>Boxing specialist – Tuesday & Thursday 6 pm.</div>
+    </div>
+    <div class="coach-card">
+      <img src="assets/BJJ COACH.PNG" alt="BJJ Coach – Brown Belt"/>
+      <div class="info"><strong>BJJ Coach (Brown Belt)</strong><br>Jiu‑Jitsu sessions – Saturday 6 pm.</div>
+    </div>
+    <div class="coach-card">
+      <img src="assets/impakt logo.jpeg" alt="Impakt Logo"/>
+      <div class="info"><strong>Keagan</strong><br>Muay‑Thai coach – Monday & Wednesday 6 pm.</div>
+    </div>
+  </div>
+  <div class="video-wrapper">
+    <iframe src="https://www.youtube.com/embed/PLACEHOLDER_VIDEO_ID" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
+</div>
+<footer>
+  <p>© 2026 Impakt Sports &amp; Fitness – Cape Town</p>
+  <p><a href="https://www.impaktsa.com" target="_blank">Visit original site</a></p>
+</footer>
+</body>
+</html>

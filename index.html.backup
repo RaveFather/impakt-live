@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Impakt Live – Cape Town’s Premier MMA Gym</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+  <style>
+    :root{--primary:#FF4A00;--primary-dark:#E64300;--dark:#0a0a0a;--dark-2:#141414;--light:#fff;--gray:#2a2a2a;--accent:#FFD700;}
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:'Inter',sans-serif;background:#0a0a0a;color:#e0e0e0;line-height:1.6;overflow-x:hidden}
+    a{color:inherit;text-decoration:none;transition:.2s}
+    nav{position:fixed;top:0;left:0;right:0;background:rgba(10,10,10,.9);backdrop-filter:blur(12px);padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;z-index:1000;border-bottom:1px solid rgba(255,74,0,.1)}
+    nav .logo{font-size:1.5rem;font-weight:800;color:var(--primary);letter-spacing:1px}
+    nav ul{display:flex;gap:2rem;list-style:none}
+    nav a{font-weight:600;color:#e0e0e0;font-size:.9rem;text-transform:uppercase;letter-spacing:.5px}
+    nav a:hover{color:var(--primary)}
+    .btn{display:inline-block;background:var(--primary);color:#fff;padding:.8rem 2rem;border-radius:50px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;transition:all .3s ease;box-shadow:0 0 20px rgba(255,74,0,.3)}
+    .btn:hover{background:var(--primary-dark);transform:scale(1.05);box-shadow:0 0 30px rgba(255,74,0,.5)}
+    .btn-outline{background:transparent;border:2px solid var(--primary);color:var(--primary);box-shadow:none}
+    .btn-outline:hover{background:var(--primary);color:#fff}
+    section{padding:6rem 2rem;max-width:1400px;margin:0 auto}
+    section:nth-child(odd){background:var(--dark)}
+    section:nth-child(even){background:var(--dark-2);position:relative}
+    h1,h2,h3{color:#fff;font-weight:800}
+    h1{font-size:3.5rem;line-height:1.1;margin-bottom:1.5rem}
+    h2{font-size:2.8rem;margin-bottom:2rem;text-align:center;position:relative}
+    h2::after{content:"";display:block;width:60px;height:4px;background:var(--primary);margin:1rem auto 0;border-radius:2px}
+    .hero{position:relative;height:95vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
+    .hero::before{content:"";position:absolute;inset:0;background:url('assets/A PHOTO OF THE BJJ CLASS.jpg') center/cover no-repeat;opacity:.7;animation:pan 60s infinite alternate ease-in-out}
+    .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(10,10,10,.95),rgba(10,10,10,.4),rgba(10,10,10,.95))}
+    .hero-content{position:relative;z-index:10;text-align:center;color:#fff}
+    .hero h1{color:#fff;margin-bottom:1rem}
+    .hero p{font-size:1.3rem;max-width:600px;margin:0 auto 2rem;color:#ddd}
+    .grid{display:grid;gap:2.5rem;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+    .card{background:rgba(255,255,255,.03);border:1px solid rgba(255,74,0,.1);border-radius:20px;overflow:hidden;transition:all .4s ease}
+    .card:hover{transform:translateY(-12px);border-color:var(--primary);box-shadow:0 20px 40px rgba(255,74,0,.15)}
+    .card img{width:100%;height:220px;object-fit:cover;transition:.5s}
+    .card:hover img{transform:scale(1.1)}
+    .card .info{padding:1.5rem}
+    .card h3{font-size:1.4rem;margin-bottom:.5rem;color:var(--primary)}
+    .card p{font-size:.95rem;color:#aaa}
+    .feature{display:flex;align-items:center;gap:3rem}
+    .feature img{max-width:45%;border-radius:20px;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+    .pricing-grid{display:grid;gap:2rem;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+    .pricing{background:var(--dark-2);border:1px solid rgba(255,74,0,.2);border-radius:24px;padding:3rem;position:relative;overflow:hidden;transition:.4s}
+    .pricing:hover{border-color:var(--primary);transform:scale(1.02)}
+    .pricing.popular{border-color:var(--primary);background:linear-gradient(180deg,rgba(255,74,0,.1),var(--dark-2))}
+    .pricing.popular::before{content:"BEST VALUE";position:absolute;top:1rem;right:1rem;background:var(--primary);color:#fff;font-size:.75rem;font-weight:800;padding:.3rem 1rem;border-radius:20px;letter-spacing:1px}
+    .pricing h3{color:var(--primary);font-size:1.8rem;margin-bottom:1rem}
+    .pricing .price{font-size:3rem;font-weight:800;color:#fff;margin:1rem 0}
+    .pricing ul{list-style:none;margin:1.5rem 0}
+    .pricing ul li{padding:.6rem 0;border-bottom:1px solid rgba(255,255,255,.1);display:flex;align-items:center;gap:10px}
+    .pricing ul li::before{content:"✓";color:var(--primary);font-weight:800;font-size:1.2rem}
+    .gallery{background:var(--dark)}
+    .gallery h2{color:#fff}
+    .gallery-grid{display:grid;gap:1.5rem;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+    .gallery-item{position:relative;overflow:hidden;border-radius:16px;cursor:pointer}
+    .gallery-item img{width:100%;height:320px;object-fit:cover;transition:.5s}
+    .gallery-item:hover img{transform:scale(1.15)}
+    .gallery-item::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent,rgba(0,0,0,.7));opacity:0;transition:.3s}
+    .gallery-item:hover::after{opacity:1}
+    .gallery-caption{position:absolute;bottom:1.5rem;left:1.5rem;color:#fff;font-size:1.1rem;font-weight:600;text-shadow:0 2px 4px rgba(0,0,0,.5);opacity:0;transform:translateY(20px);transition:.4s}
+    .gallery-item:hover .gallery-caption{opacity:1;transform:translateY(0)}
+    @keyframes pan{0%{transform:scale(1)}100%{transform:scale(1.1)}}
+    @keyframes fadeInUp{0%{opacity:0;transform:translateY(40px)}100%{opacity:1;transform:translateY(0)}}
+    .fade-in-up{animation:fadeInUp 1s ease-out forwards}
+    footer{background:#050505;padding:3rem 2rem;text-align:center;border-top:1px solid rgba(255,74,0,.1);color:#888}
+    footer a{color:var(--primary)}
+    .floating-card{position:absolute;right:-50px;bottom:-50px;background:rgba(255,74,0,.08);backdrop-filter:blur(10px);padding:2rem;border-radius:20px;border:1px solid rgba(255,74,0,.1);max-width:350px}
+    .floating-card h4{color:var(--primary);margin-bottom:.5rem}
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="logo">IMPAKT LIVE</div>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#classes">Classes</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#contact" class="btn">Book Now</a></li>
+    </ul>
+  </nav>
+
+  <header class="hero" id="home">
+    <div class="hero-content fade-in-up">
+      <h1>Cape Town's Premier<br>MMA & Combat Sports Gym</h1>
+      <p>Train like a champion with world‑class coaches in boxing, kickboxing, BJJ, Muay Thai & MMA. Open 6am–9pm daily.</p>
+      <a href="#classes" class="btn">Start Your Journey</a>
+      <a href="#gallery" class="btn btn-outline" style="margin-left:1rem">See Our Gym</a>
+    </div>
+  </header>
+
+  <section id="about">
+    <h2 class="fade-in-up">More Than Just a Gym</h2>
+    <div class="grid">
+      <div class="card fade-in-up">
+        <img src="assets/buisness info.png" alt="Impakt Gym Interior">
+        <div class="info">
+          <h3>Modern Facility</h3>
+          <p>Fully equipped with professional gear, padded floors, and a training space designed for safety and performance.</p>
+        </div>
+      </div>
+      <div class="card fade-in-up" style="animation-delay:.2s">
+        <img src="assets/body building and personal training description and layout.png" alt="Personal Training">
+        <div class="info">
+          <h3>Personal Coaching</h3>
+          <p>1-on-1 sessions with our certified trainers to help you reach your goals faster, safer, and smarter.</p>
+        </div>
+      </div>
+      <div class="card fade-in-up" style="animation-delay:.4s">
+        <img src="assets/MORE CONTACT DETAILS.png" alt="Location">
+        <div class="info">
+          <h3>Prime Location</h3>
+          <p>123 Main Road, Cape Town, South Africa. Easy access, secure parking, and a community that feels like family.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="classes" style="background:linear-gradient(180deg,var(--dark-2),var(--dark))">
+    <h2 class="fade-in-up">Our Classes</h2>
+    <div class="grid">
+      <div class="card fade-in-up">
+        <img src="assets/BOXING COACH T.jpg" alt="Boxing">
+        <div class="info">
+          <h3> Boxing</h3>
+          <p>Fundamentals, footwork, combos & sparring. Coach T leads Tuesday & Thursday at 6pm.</p>
+          <button class="btn" style="margin-top:1rem;padding:.6rem 1.5rem">Book Boxing</button>
+        </div>
+      </div>
+      <div class="card fade-in-up" style="animation-delay:.2s">
+        <img src="assets/impakt logo.jpeg" alt="Muay Thai">
+        <div class="info">
+          <h3> Muay Thai</h3>
+          <p>Eight limbs of fighting. Clinch work, kicks, knees, elbows. With Coach Keagan Mon & Wed 6pm.</p>
+          <button class="btn" style="margin-top:1rem;padding:.6rem 1.5rem">Book Muay Thai</button>
+        </div>
+      </div>
+      <div class="card fade-in-up" style="animation-delay:.4s">
+        <img src="assets/BJJ COACH.PNG" alt="Brazilian Jiu‑Jitsu">
+        <div class="info">
+          <h3> BJJ</h3>
+          <p>Ground game, submissions, and positional control. Brown belt coach on Saturday 6pm.</p>
+          <button class="btn" style="margin-top:1rem;padding:.6rem 1.5rem">Book BJJ</button>
+        </div>
+      </div>
+      <div class="card fade-in-up" style="animation-delay:.6s">
+        <img src="assets/CLASSES INFO AND LAYOUT.png" alt="Kickboxing">
+        <div class="info">
+          <h3> Kickboxing</h3>
+          <p>High‑energy cardio blasts with powerful striking techniques. Perfect for fitness & fun.</p>
+          <button class="btn" style="margin-top:1rem;padding:.6rem 1.5rem">Book Kickboxing</button>
+        </div>
+      </div>
+      <div class="card fade-in-up" style="animation-delay:.8s">
+        <img src="assets/pricing and stuff.png" alt="MMA">
+        <div class="info">
+          <h3> MMA</h3>
+          <p>Mixed martial arts blending striking & grappling. For serious fighters & enthusiasts.</p>
+          <button class="btn" style="margin-top:1rem;padding:.6rem 1.5rem">Book MMA</button>
+        </div>
+      </div>
+      <div class="card fade-in-up" style="animation-delay:1s">
+        <img src="assets/ANOTHER PHOTO OF THE BJJ CLASS.jpg" alt="Sparring">
+        <div class="info">
+          <h3> Sparring</h3>
+          <p>Friday nights open mat with all coaches. Safe, supervised, and progressive.</p>
+          <button class="btn" style="margin-top:1rem;padding:.6rem 1.5rem">Join Sparring</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="schedule">
+    <h2 class="fade-in-up">Weekly Schedule</h2>
+    <div style="background:rgba(255,255,255,.03);border-radius:20px;padding:2rem;overflow-x:auto">
+      <table style="width:100%;border-collapse:collapse">
+        <thead>
+          <tr style="background:var(--primary)">
+            <th style="padding:1rem;text-align:left">Day</th>
+            <th style="padding:1rem">Class</th>
+            <th style="padding:1rem">Coach</th>
+            <th style="padding:1rem">Time</th>
+            <th style="padding:1rem">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid rgba(255,255,255,.1)"><td>Monday</td><td>Muay Thai</td><td>Keagan</td><td>6pm</td><td><button class="btn" style="padding:.4rem 1rem;font-size:.8rem">Book</button></td></tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,.1)"><td>Tuesday</td><td>Boxing</td><td>Coach T</td><td>6pm</td><td><button class="btn" style="padding:.4rem 1rem;font-size:.8rem">Book</button></td></tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,.1)"><td>Wednesday</td><td>Muay Thai</td><td>Keagan</td><td>6pm</td><td><button class="btn" style="padding:.4rem 1rem;font-size:.8rem">Book</button></td></tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,.1)"><td>Thursday</td><td>Boxing</td><td>Coach T</td><td>6pm</td><td><button class="btn" style="padding:.4rem 1rem;font-size:.8rem">Book</button></td></tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,.1)"><td>Friday</td><td>Sparring</td><td>All Coaches</td><td>6pm</td><td><button class="btn" style="padding:.4rem 1rem;font-size:.8rem">Book</button></td></tr>
+          <tr><td>Saturday</td><td>BJJ</td><td>Coach X (Brown)</td><td>6pm</td><td><button class="btn" style="padding:.4rem 1rem;font-size:.8rem">Book</button></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="pricing">
+    <h2 class="fade-in-up">Membership Plans</h2>
+    <div class="pricing-grid">
+      <div class="pricing fade-in-up">
+        <h3>Basic</h3>
+        <div class="price">R650/mo</div>
+        <p style="color:#aaa;margin-bottom:1.5rem">Perfect for beginners</p>
+        <ul>
+          <li>Unlimited classes (excluding sparring)</li>
+          <li>Locker access</li>
+          <li>Free gym & cardio area</li>
+        </ul>
+        <button class="btn" style="width:100%;margin-top:1rem">Join Basic</button>
+      </div>
+      <div class="pricing popular fade-in-up" style="animation-delay:.2s">
+        <h3>Pro</h3>
+        <div class="price">R950/mo</div>
+        <p style="color:#aaa;margin-bottom:1.5rem">Most popular</p>
+        <ul>
+          <li>Everything in Basic</li>
+          <li>Sparring access</li>
+          <li>1 personal training session/mo</li>
+          <li>Gym & weights included</li>
+        </ul>
+        <button class="btn" style="width:100%;margin-top:1rem">Join Pro</button>
+      </div>
+      <div class="pricing fade-in-up" style="animation-delay:.4s">
+        <h3>Elite</h3>
+        <div class="price">R1,450/mo</div>
+        <p style="color:#aaa;margin-bottom:1.5rem">For serious athletes</p>
+        <ul>
+          <li>Everything in Pro</li>
+          <li>3 personal training sessions/mo</li>
+          <li>MMA equipment loan</li>
+          <li>Competition prep support</li>
+        </ul>
+        <button class="btn" style="width:100%;margin-top:1rem">Join Elite</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="gallery" class="gallery">
+    <h2 class="fade-in-up">Behind the Scenes</h2>
+    <div class="gallery-grid">
+      <div class="gallery-item fade-in-up">
+        <img src="assets/A PHOTO OF THE BJJ CLASS.jpg" alt="BJJ Class">
+        <div class="gallery-caption">BJJ Class Action</div>
+      </div>
+      <div class="gallery-item fade-in-up" style="animation-delay:.2s">
+        <img src="assets/ANOTHER PHOTO OF THE BJJ CLASS.jpg" alt="BJJ Training">
+        <div class="gallery-caption">Training session</div>
+      </div>
+      <div class="gallery-item fade-in-up" style="animation-delay:.4s">
+        <img src="assets/BOXING COACH T.jpg" alt="Coach T">
+        <div class="gallery-caption">Coach T – Boxing</div>
+      </div>
+      <div class="gallery-item fade-in-up" style="animation-delay:.6s">
+        <img src="assets/BJJ COACH.PNG" alt="BJJ Coach">
+        <div class="gallery-caption">BJJ Coach (Brown)</div>
+      </div>
+      <div class="gallery-item fade-in-up" style="animation-delay:.8s">
+        <img src="assets/impakt logo.jpeg" alt="Impakt Logo">
+        <div class="gallery-caption">Gym Interior</div>
+      </div>
+      <div class="gallery-item fade-in-up" style="animation-delay:1s">
+        <img src="assets/pricing and stuff.png" alt="Pricing">
+        <div class="gallery-caption">Our Packages</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" style="background:linear-gradient(180deg,rgba(255,74,0,.05),var(--dark-2))">
+    <h2 class="fade-in-up">Ready to Train?</h2>
+    <div style="display:grid;gap:3rem;max-width:900px;margin:0 auto">
+      <div>
+        <h3 style="color:var(--primary);margin-bottom:1rem">Get in Touch</h3>
+        <p style="color:#aaa">Start your journey with a free trial class. Fill out the form and we’ll get back to you within 24 hours.</p>
+        <div style="margin-top:2rem">
+          <div style="margin-bottom:1rem"><strong>📍 Address:</strong> 123 Main Road, Cape Town, South Africa</div>
+          <div style="margin-bottom:1rem"><strong>📞 Call:</strong> +27 21 555 1234</div>
+          <div style="margin-bottom:1rem"><strong>📧 Email:</strong> info@impakt.co.za</div>
+          <div><strong>⏰ Hours:</strong> 6am – 9pm (Mon–Sat), Closed Sundays</div>
+        </div>
+      </div>
+      <div style="background:rgba(255,255,255,.03);padding:2rem;border-radius:20px">
+        <form name="contact" style="display:flex;flex-direction:column;gap:1rem">
+          <input type="text" placeholder="Your Name" required style="padding:1rem;border-radius:10px;border:none;background:rgba(255,255,255,.05);color:#fff">
+          <input type="email" placeholder="Email Address" required style="padding:1rem;border-radius:10px;border:none;background:rgba(255,255,255,.05);color:#fff">
+          <textarea placeholder="What are you interested in?" rows="4" style="padding:1rem;border-radius:10px;border:none;background:rgba(255,255,255,.05);color:#fff"></textarea>
+          <button type="submit" class="btn">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="floating-card fade-in-up">
+      <h4>Impakt Live</h4>
+      <p>Cape Town’s premier MMA & combat sports gym. Train with the best.</p>
+    </div>
+    <p>© 2026 Impakt Sports & Fitness – Cape Town</p>
+    <p style="margin-top:.5rem"><a href="https://www.impaktsa.com" target="_blank">Original site</a></p>
+  </footer>
+
+  <script>
+    // Scroll animations
+    const observerOptions = {threshold: 0.1};
+    const observer = new IntersectionObserver((entries)=>{
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, observerOptions);
+    document.querySelectorAll('.fade-in-up').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(40px)';
+      el.style.transition = 'opacity 1s ease-out, transform 1s ease-out';
+      observer.observe(el);
+    });
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) target.scrollIntoView({behavior: 'smooth'});
+      });
+    });
+  </script>
+</body>
+</html>
