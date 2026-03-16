@@ -52,7 +52,7 @@
     /* Hero Section with Explosive Animations */
     .hero{position:relative;height:95vh;display:flex;align-items:center;justify-content:center;overflow:hidden;padding-top:80px}
     .hero-bg{position:absolute;inset:0;z-index:-2}
-    .hero-bg video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;animation:heroPan 40s infinite alternate ease-in-out}
+    .hero-bg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;animation:heroPan 40s infinite alternate ease-in-out}
     @keyframes heroPan{0%{transform:scale(1) translate(0,0)}100%{transform:scale(1.2) translate(-2%,-2%)}}
     .hero-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(10,10,10,.98) 0%,rgba(10,10,10,.6) 50%,rgba(10,10,10,.98) 100%);z-index:-1}
     .hero::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(255,74,0,.1),transparent 60%)}
@@ -207,10 +207,7 @@
 
   <header class="hero" id="home">
     <div class="hero-bg">
-      <video autoplay muted loop playsinline poster="assets/A PHOTO OF THE BJJ CLASS.jpg">
-        <source src="assets/MMA PERSONAL TRAINING VIDEO WITH COACH T.mp4" type="video/mp4">
-        <source src="assets/BJJ TRAINING VIDEO.mp4" type="video/mp4">
-      </video>
+      <img src="assets/A PHOTO OF THE BJJ CLASS.jpg" alt="Training Session" loading="lazy">
       <div class="hero-overlay"></div>
     </div>
     
@@ -443,15 +440,15 @@
         </div>
       </div>
       <div class="gallery-item fade-in-up" style="animation-delay:.8s">
-        <img src="assets/impakt logo.jpeg" alt="Impakt Logo">
+        <img src="assets/MORE CONTACT DETAILS.png" alt="Location">
         <div class="gallery-overlay">
-          <div class="gallery-caption">Gym Interior</div>
+          <div class="gallery-caption">Prime Location</div>
         </div>
       </div>
       <div class="gallery-item fade-in-up" style="animation-delay:1s">
-        <img src="assets/pricing and stuff.png" alt="Pricing">
+        <img src="assets/A PHOTO OF THE BJJ CLASS.jpg" alt="Class Action">
         <div class="gallery-overlay">
-          <div class="gallery-caption">Our Packages</div>
+          <div class="gallery-caption">Group Training</div>
         </div>
       </div>
       <div class="gallery-item fade-in-up" style="animation-delay:1.2s">
