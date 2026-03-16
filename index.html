@@ -64,6 +64,9 @@
     .ai-widget textarea{width:100%;border:none;padding:.5rem .75rem;border-top:1px solid #eee;background:#fff;resize:none;outline:none}
     .ai-widget button{width:100%;background:var(--primary);color:#fff;border:none;padding:.6rem;font-weight:600;border-radius:0 0 16px 16px;cursor:pointer}
     .ai-widget button:hover{background:var(--primary-dark)}
+    .ai-button{position:fixed;bottom:1.5rem;right:1.5rem;background:var(--primary);color:#fff;border:none;border-radius:50%;width:60px;height:60px;font-size:1.5rem;box-shadow:0 4px 20px rgba(255,74,0,.4);cursor:pointer;transition:all .3s ease;z-index:9999}
+    .ai-button:hover{transform:scale(1.1);box-shadow:0 6px 30px rgba(255,74,0,.6)}
+    .ai-button.active{background:#222}
     .ai-msg{margin-bottom:.5rem}
     .ai-msg span{display:inline-block;padding:.5rem .8rem;border-radius:8px;margin-right:.5rem}
     .ai-msg.you{background:var(--primary);color:#fff;margin-left:1.5rem}
@@ -329,6 +332,7 @@
     </div>
   </section>
 
+  <button class="ai-button" onclick="toggleAI()">🤖 AI Coach</button>
   <div class="ai-widget" id="aiWidget">
     <header>
       <h4>🤖 Impakt‑AI Coach</h4>
@@ -363,7 +367,13 @@
     });
 
     // AI Widget toggle
-    function toggleAI(){document.getElementById('aiWidget').classList.toggle('active');}
+    function toggleAI(){
+      const widget=document.getElementById('aiWidget');
+      const btn=document.querySelector('.ai-button');
+      widget.classList.toggle('active');
+      if(widget.classList.contains('active')) btn.classList.add('active');
+      else btn.classList.remove('active');
+    }
     function sendAI(){
       const txt=document.getElementById('chatInput').value.trim();
       if(!txt) return;
