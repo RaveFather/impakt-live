@@ -55,22 +55,6 @@
     .gallery-item:hover img{transform:scale(1.2)}
     .gallery-caption{position:absolute;bottom:1rem;left:1rem;color:#fff;font-size:1rem;font-weight:600;text-shadow:0 2px 4px rgba(0,0,0,.5);opacity:0;transform:translateY(15px);transition:.4s}
     .gallery-item:hover .gallery-caption{opacity:1;transform:translateY(0)}
-    .ai-widget{position:fixed;bottom:1.5rem;right:1.5rem;width:320px;background:#fff;border-radius:16px;box-shadow:0 10px 40px rgba(0,0,0,.3);overflow:hidden;transform:translateX(20px);opacity:0;transition:.5s;z-index:9999}
-    .ai-widget.active{transform:translateX(0);opacity:1}
-    .ai-widget header{background:var(--primary);color:#fff;padding:.75rem 1rem;display:flex;justify-content:space-between;align-items:center}
-    .ai-widget h4{font-size:.9rem;margin:0}
-    .ai-widget .toggle{background:none;border:none;color:#fff;cursor:pointer;font-size:1.2rem}
-    .ai-widget .log{padding:.75rem;max-height:280px;overflow-y:auto;font-size:.85rem;background:#f8f8f8}
-    .ai-widget textarea{width:100%;border:none;padding:.5rem .75rem;border-top:1px solid #eee;background:#fff;resize:none;outline:none}
-    .ai-widget button{width:100%;background:var(--primary);color:#fff;border:none;padding:.6rem;font-weight:600;border-radius:0 0 16px 16px;cursor:pointer}
-    .ai-widget button:hover{background:var(--primary-dark)}
-    .ai-button{position:fixed;bottom:1.5rem;right:1.5rem;background:var(--primary);color:#fff;border:none;border-radius:50%;width:60px;height:60px;font-size:1.5rem;box-shadow:0 4px 20px rgba(255,74,0,.4);cursor:pointer;transition:all .3s ease;z-index:9999}
-    .ai-button:hover{transform:scale(1.1);box-shadow:0 6px 30px rgba(255,74,0,.6)}
-    .ai-button.active{background:#222}
-    .ai-msg{margin-bottom:.5rem}
-    .ai-msg span{display:inline-block;padding:.5rem .8rem;border-radius:8px;margin-right:.5rem}
-    .ai-msg.you{background:var(--primary);color:#fff;margin-left:1.5rem}
-    .ai-msg.impakt{background:#e0e0e0;color:#222}
     @keyframes pan{0%{transform:scale(1)}100%{transform:scale(1.1)}}
     @keyframes fadeInUp{0%{opacity:0;transform:translateY(40px)}100%{opacity:1;transform:translateY(0)}}
     .fade-in-up{animation:fadeInUp 1s ease-out forwards;opacity:0}
@@ -103,7 +87,6 @@
       section{padding:4rem 1rem}
       .hero{height:70vh}
       .grid,.pricing-grid,.gallery-grid,.coach-grid{grid-template-columns:1fr}
-      .ai-widget{width:90%;right:5%;left:5%}
       .table-container{-webkit-overflow-scrolling:touch}
     }
   </style>
@@ -331,17 +314,6 @@
       </div>
     </div>
   </section>
-
-  <button class="ai-button" onclick="window.toggleAI = function(){ const w=document.getElementById('aiWidget'); w.classList.toggle('active'); document.querySelector('.ai-button').classList.toggle('active'); console.log('AI toggled:',w.classList.contains('active')); }; window.toggleAI();">🤖 AI Coach</button>
-  <div class="ai-widget" id="aiWidget">
-    <header>
-      <h4>🤖 Impakt‑AI Coach</h4>
-      <button class="toggle" onclick="window.toggleAI()">✕</button>
-    </header>
-    <div class="log" id="chatLog" style="max-height:280px;overflow-y:auto;padding:.75rem;background:#f8f8f8"></div>
-    <textarea id="chatInput" placeholder="Ask about classes, pricing, coaching..." style="width:100%;border:none;padding:.5rem .75rem;border-top:1px solid #eee;background:#fff;resize:none;outline:none"></textarea>
-    <button onclick="window.sendAI = function(){ const i=document.getElementById('chatInput'),l=document.getElementById('chatLog'); if(!i||!l)return; const t=i.value.trim(); if(!t)return; l.innerHTML+=`<div style='margin-bottom:.5rem'><strong>You:</strong> ${t}</div>`; setTimeout(()=>{ let r='Thanks for your interest!'; if(t.toLowerCase().includes('price'))r='Plans start at R650/month.'; l.innerHTML+=`<div style='margin-bottom:.5rem'><strong>AI:</strong> ${r}</div>`; l.scrollTop=l.scrollHeight; },500); i.value=''; }; window.sendAI();" style="width:100%;background:var(--primary);color:#fff;border:none;padding:.6rem;font-weight:600;border-radius:0 0 16px 16px;cursor:pointer">Send</button>
-  </div>
 
   <footer>
     <p>© 2026 Impakt Sports & Fitness – Cape Town</p>
