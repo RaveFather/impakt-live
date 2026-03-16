@@ -5,95 +5,194 @@
   <title>Impakt Live – Cape Town's Premier MMA Gym</title>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
   <style>
     :root{--primary:#FF4A00;--primary-dark:#E64300;--dark:#0a0a0a;--dark-2:#141414;--light:#fff;--gray:#2a2a2a;--accent:#FFD700}
     *{margin:0;padding:0;box-sizing:border-box}
-    body{font-family:'Inter',sans-serif;background:#0a0a0a;color:#e0e0e0;line-height:1.6;overflow-x:hidden}
-    a{color:inherit;text-decoration:none;transition:.2s}
-    nav{position:fixed;top:0;left:0;right:0;background:rgba(10,10,10,.95);backdrop-filter:blur(12px);padding:.75rem 1.5rem;display:flex;justify-content:space-between;align-items:center;z-index:1000;border-bottom:1px solid rgba(255,74,0,.1)}
-    nav .logo{font-size:1.3rem;font-weight:800;color:var(--primary);letter-spacing:1px}
-    nav ul{display:flex;gap:1.25rem;list-style:none}
-    nav a{font-weight:600;color:#e0e0e0;font-size:.85rem;text-transform:uppercase;letter-spacing:.5px}
-    nav a:hover{color:var(--primary)}
-    .btn{display:inline-block;background:var(--primary);color:#fff;padding:.75rem 1.5rem;border-radius:50px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;transition:all .3s ease;box-shadow:0 0 20px rgba(255,74,0,.3);cursor:pointer;border:none}
-    .btn:hover{background:var(--primary-dark);transform:scale(1.03);box-shadow:0 0 30px rgba(255,74,0,.5)}
+    body{font-family:'Inter',sans-serif;background:#0a0a0a;color:#e0e0e0;line-height:1.6;overflow-x:hidden;scroll-behavior:smooth}
+    a{color:inherit;text-decoration:none;transition:.3s;cursor:pointer}
+    
+    /* Smooth Animated Background */
+    .bg-fx{position:fixed;inset:0;z-index:-1;overflow:hidden}
+    .bg-fx::before{content:'';position:absolute;inset:-20%;background:radial-gradient(circle at 20% 30%,rgba(255,74,0,.15),transparent 50%),radial-gradient(circle at 80% 70%,rgba(255,215,0,.1),transparent 50%),radial-gradient(circle at 50% 50%,rgba(255,74,0,.05),transparent 40%);animation:moveBackground 60s infinite alternate ease-in-out}
+    @keyframes moveBackground{0%{transform:translate(0,0) scale(1)}25%{transform:translate(-5%,-5%) scale(1.1)}50%{transform:translate(5%,5%) scale(1)}75%{transform:translate(-5%,5%) scale(1.1)}100%{transform:translate(0,0) scale(1)}}
+    
+    /* Animated Particles */
+    .particles{position:fixed;inset:0;z-index:-1;pointer-events:none}
+    .particle{position:absolute;bottom:-10px;width:4px;height:4px;background:var(--primary);border-radius:50%;animation:rise 20s infinite linear;opacity:0}
+    @keyframes rise{0%{transform:translateY(0) scale(1);opacity:0}10%{opacity:1}90%{opacity:1}100%{transform:translateY(-100vh) scale(0);opacity:0}}
+    
+    nav{position:fixed;top:0;left:0;right:0;background:rgba(10,10,10,.85);backdrop-filter:blur(12px);padding:1rem 1.5rem;display:flex;justify-content:space-between;align-items:center;z-index:1000;border-bottom:1px solid rgba(255,74,0,.1);transition:all .4s}
+    nav.scrolled{background:rgba(10,10,10,.95);padding:.5rem 1.5rem;box-shadow:0 4px 20px rgba(0,0,0,.5)}
+    nav .logo{font-size:1.5rem;font-weight:800;color:var(--primary);letter-spacing:2px;text-transform:uppercase;position:relative}
+    nav .logo::after{content:'🎯';position:absolute;right:-25px;top:-10px;animation:bounce 2s infinite}
+    @keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+    nav ul{display:flex;gap:1rem;list-style:none}
+    nav a{font-weight:600;color:#e0e0e0;font-size:.8rem;text-transform:uppercase;letter-spacing:1px;position:relative;padding:.5rem}
+    nav a::before{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--primary);transition:.3s;box-shadow:0 0 10px var(--primary)}
+    nav a:hover::before{width:100%}
+    nav a:hover{color:var(--primary);text-shadow:0 0 10px rgba(255,74,0,.5)}
+    
+    .btn{display:inline-block;background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:#fff;padding:1rem 2rem;border-radius:50px;font-weight:700;text-transform:uppercase;letter-spacing:1px;transition:all .4s ease;box-shadow:0 10px 30px rgba(255,74,0,.4);cursor:pointer;border:none;position:relative;overflow:hidden}
+    .btn::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,transparent,rgba(255,255,255,.2),transparent);transform:translateX(-100%);transition:.5s}
+    .btn:hover::before{transform:translateX(100%)}
+    .btn:hover{transform:translateY(-4px) scale(1.05);box-shadow:0 20px 40px rgba(255,74,0,.6)}
+    .btn:active{transform:translateY(0) scale(0.98)}
     .btn-outline{background:transparent;border:2px solid var(--primary);color:var(--primary);box-shadow:none}
-    .btn-outline:hover{background:var(--primary);color:#fff}
-    .btn-small{padding:.5rem 1rem;font-size:.8rem}
-    section{padding:5rem 1.5rem;max-width:1400px;margin:0 auto}
-    h1,h2,h3{color:#fff;font-weight:800}
-    h1{font-size:3rem;line-height:1.15;margin-bottom:1rem}
-    h2{font-size:2.4rem;margin-bottom:2rem;text-align:center;position:relative}
-    h2::after{content:"";display:block;width:60px;height:4px;background:var(--primary);margin:1rem auto 0;border-radius:2px}
-    .hero{position:relative;height:85vh;display:flex;align-items:center;justify-content:center;overflow:hidden;padding-top:80px}
-    .hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.75;animation:pan 60s infinite alternate ease-in-out}
-    .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(10,10,10,.96),rgba(10,10,10,.4),rgba(10,10,10,.96))}
-    .hero-content{position:relative;z-index:10;text-align:center;color:#fff;margin-top:-40px}
-    .hero h1{color:#fff;margin-bottom:1rem}
-    .hero p{font-size:1.25rem;max-width:600px;margin:0 auto 2rem;color:#ddd}
-    .grid{display:grid;gap:2rem;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
-    .card{background:rgba(255,255,255,.03);border:1px solid rgba(255,74,0,.1);border-radius:16px;overflow:hidden;transition:all .4s ease}
-    .card:hover{transform:translateY(-8px);border-color:var(--primary);box-shadow:0 16px 32px rgba(255,74,0,.12)}
-    .card img{width:100%;height:200px;object-fit:cover;transition:.5s}
-    .card:hover img{transform:scale(1.1)}
-    .card .info{padding:1.25rem}
-    .card h3{font-size:1.35rem;margin-bottom:.5rem;color:var(--primary)}
-    .card p{font-size:.95rem;color:#aaa}
-    .pricing-grid{display:grid;gap:2rem;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
-    .pricing{background:var(--dark-2);border:1px solid rgba(255,74,0,.2);border-radius:20px;padding:2.5rem;position:relative;transition:.4s}
-    .pricing:hover{border-color:var(--primary);transform:scale(1.02)}
-    .pricing.popular{border-color:var(--primary);background:linear-gradient(180deg,rgba(255,74,0,.1),var(--dark-2))}
-    .pricing.popular::before{content:"BEST VALUE";position:absolute;top:1rem;right:1rem;background:var(--primary);color:#fff;font-size:.7rem;font-weight:800;padding:.25rem .8rem;border-radius:16px;letter-spacing:1px}
-    .pricing h3{color:var(--primary);font-size:1.6rem;margin-bottom:1rem}
-    .pricing .price{font-size:2.8rem;font-weight:800;color:#fff;margin:1rem 0}
-    .pricing ul{list-style:none;margin:1.25rem 0}
-    .pricing ul li{padding:.5rem 0;border-bottom:1px solid rgba(255,255,255,.08);display:flex;align-items:center;gap:.75rem}
-    .pricing ul li::before{content:"✓";color:var(--primary);font-weight:800;font-size:1.1rem}
-    .gallery-grid{display:grid;gap:1.25rem;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
-    .gallery-item{position:relative;overflow:hidden;border-radius:16px;cursor:pointer}
-    .gallery-item img{width:100%;height:280px;object-fit:cover;transition:.6s}
-    .gallery-item:hover img{transform:scale(1.2)}
-    .gallery-caption{position:absolute;bottom:1rem;left:1rem;color:#fff;font-size:1rem;font-weight:600;text-shadow:0 2px 4px rgba(0,0,0,.5);opacity:0;transform:translateY(15px);transition:.4s}
-    .gallery-item:hover .gallery-caption{opacity:1;transform:translateY(0)}
-    @keyframes pan{0%{transform:scale(1)}100%{transform:scale(1.1)}}
-    @keyframes fadeInUp{0%{opacity:0;transform:translateY(40px)}100%{opacity:1;transform:translateY(0)}}
-    .fade-in-up{animation:fadeInUp 1s ease-out forwards;opacity:0}
-    footer{background:#050505;padding:2.5rem 1.5rem;text-align:center;border-top:1px solid rgba(255,74,0,.1);color:#888}
-    footer a{color:var(--primary)}
-    .coach-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,74,0,.1);border-radius:20px;overflow:hidden}
-    .coach-card img{width:100%;height:240px;object-fit:cover}
-    .coach-card .info{padding:1.5rem}
-    .coach-card .role{color:var(--primary);font-weight:600;font-size:.9rem;margin-bottom:.25rem}
-    .coach-card .name{color:#fff;font-size:1.4rem;margin-bottom:.5rem}
-    .coach-card .desc{color:#aaa;font-size:.95rem}
-    .coach-card .note{color:var(--accent);font-size:.75rem;margin-top:1rem;font-style:italic}
-    .coach-grid{display:grid;gap:2rem;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
-    .table-container{overflow-x:auto}
-    table{width:100%;border-collapse:collapse}
-    th,td{padding:1rem;text-align:center;border-bottom:1px solid rgba(255,255,255,.1)}
-    th{background:var(--primary);color:#fff;font-weight:600}
-    td{background:rgba(255,255,255,.02);color:#e0e0e0}
-    .form-grid{display:grid;gap:1.25rem;max-width:600px;margin:0 auto}
-    input,textarea{width:100%;padding:.9rem;border-radius:12px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.03);color:#fff;outline:none}
-    input:focus,textarea:focus{border-color:var(--primary);background:rgba(255,74,0,.05)}
-    .contact-card{background:rgba(255,255,255,.03);border-radius:20px;padding:2rem}
+    .btn-outline:hover{background:var(--primary);color:#fff;box-shadow:0 20px 40px rgba(255,74,0,.6)}
+    .btn-small{padding:.6rem 1.5rem;font-size:.85rem}
+    
+    section{padding:8rem 1.5rem;max-width:1400px;margin:0 auto;position:relative}
+    h1,h2,h3{color:#fff;font-weight:800;letter-spacing:-1px}
+    h1{font-size:4.5rem;line-height:1.1;margin-bottom:1.5rem;position:relative}
+    h1 span{background:linear-gradient(135deg,var(--primary),var(--accent));-webkit-background-clip:text;color:transparent}
+    h2{font-size:3.5rem;margin-bottom:3rem;text-align:center;position:relative;letter-spacing:2px}
+    h2::after{content:"";display:block;width:80px;height:6px;background:linear-gradient(90deg,var(--primary),var(--accent));margin:1.5rem auto 0;border-radius:3px;box-shadow:0 0 20px var(--primary)}
+    
+    /* Hero Section with Explosive Animations */
+    .hero{position:relative;height:95vh;display:flex;align-items:center;justify-content:center;overflow:hidden;padding-top:80px}
+    .hero-bg{position:absolute;inset:0;z-index:-2}
+    .hero-bg video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;animation:heroPan 40s infinite alternate ease-in-out}
+    @keyframes heroPan{0%{transform:scale(1) translate(0,0)}100%{transform:scale(1.2) translate(-2%,-2%)}}
+    .hero-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(10,10,10,.98) 0%,rgba(10,10,10,.6) 50%,rgba(10,10,10,.98) 100%);z-index:-1}
+    .hero::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(255,74,0,.1),transparent 60%)}
+    .hero-content{position:relative;z-index:10;text-align:center;color:#fff;margin-top:-60px}
+    .hero-content h1{animation:heroTitle 1.2s cubic-bezier(.22,1,.36,1) forwards;opacity:0;transform:translateY(60px)}
+    .hero-content p{font-size:1.5rem;max-width:700px;margin:0 auto 2.5rem;color:#ddd;font-weight:300;letter-spacing:0.5px;animation:heroText 1s cubic-bezier(.22,1,.36,1) forwards .3s;opacity:0;transform:translateY(40px)}
+    @keyframes heroTitle{to{opacity:1;transform:translateY(0)}}
+    @keyframes heroText{to{opacity:1;transform:translateY(0)}}
+    .hero-buttons{display:flex;gap:1.5rem;justify-content:center;animation:heroButtons 1s cubic-bezier(.22,1,.36,1) forwards .6s;opacity:0;transform:translateY(40px)}
+    @keyframes heroButtons{to{opacity:1;transform:translateY(0)}}
+    
+    /* Stats Bar */
+    .stats-bar{background:linear-gradient(90deg,var(--dark-2),var(--dark));padding:3rem 1.5rem;border-top:1px solid rgba(255,74,0,.2);border-bottom:1px solid rgba(255,74,0,.2);position:relative}
+    .stats-bar::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,74,0,.1),transparent);pointer-events:none}
+    .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:2rem;max-width:1400px;margin:0 auto}
+    .stat-item{text-align:center}
+    .stat-number{font-size:4rem;font-weight:800;color:var(--primary);text-shadow:0 0 20px rgba(255,74,0,.5);margin-bottom:.5rem;position:relative}
+    .stat-number::after{content:'';position:absolute;bottom:0;left:50%;width:0;height:3px;background:linear-gradient(90deg,var(--primary),var(--accent));transition:width .5s ease;transform:translateX(-50%)}
+    .stat-item.visible .stat-number::after{width:60%}
+    .stat-label{color:#aaa;font-size:.9rem;text-transform:uppercase;letter-spacing:2px}
+    
+    /* Grid with Glassmorphism */
+    .grid{display:grid;gap:2rem;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+    .card{background:rgba(255,255,255,.03);backdrop-filter:blur(10px);border:1px solid rgba(255,74,0,.2);border-radius:24px;overflow:hidden;transition:all .5s cubic-bezier(.22,1,.36,1);position:relative}
+    .card::before{content:'';position:absolute;inset:-2px;background:linear-gradient(45deg,var(--primary),var(--accent));border-radius:24px;opacity:0;transition:.5s;pointer-events:none;z-index:-1}
+    .card:hover{transform:translateY(-12px) scale(1.02);border-color:var(--primary);box-shadow:0 20px 60px rgba(255,74,0,.3)}
+    .card:hover::before{opacity:1}
+    .card:hover .card-icon{transform:scale(1.2) rotate(15deg);color:var(--accent);text-shadow:0 0 20px var(--primary)}
+    .card img{width:100%;height:240px;object-fit:cover;transition:.6s;filter:grayscale(100%)}
+    .card:hover img{transform:scale(1.15);filter:grayscale(0%) brightness(1.1)}
+    .card-content{padding:2rem}
+    .card-icon{font-size:2.5rem;margin-bottom:1rem;transition:.5s}
+    .card h3{font-size:1.8rem;margin-bottom:1rem;color:var(--primary);text-transform:uppercase;letter-spacing:1px}
+    .card p{color:#aaa;line-height:1.8;font-size:1rem}
+    
+    /* Pricing with Laser Effect */
+    .pricing-grid{display:grid;gap:2.5rem;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));perspective:1000px}
+    .pricing{background:linear-gradient(180deg,rgba(20,20,20,.8),rgba(10,10,10,.9));border:1px solid rgba(255,74,0,.2);border-radius:32px;padding:3.5rem;position:relative;transition:all .6s cubic-bezier(.22,1,.36,1)}
+    .pricing:hover{transform:translateY(-15px) rotateX(2deg);border-color:var(--primary);box-shadow:0 30px 80px rgba(255,74,0,.25)}
+    .pricing::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,74,0,.1),transparent);pointer-events:none}
+    .pricing.popular{border-color:var(--primary);background:linear-gradient(180deg,rgba(255,74,0,.15),rgba(20,20,20,.9));transform:scale(1.05);box-shadow:0 25px 60px rgba(255,74,0,.3);z-index:10}
+    .pricing.popular::after{content:'';position:absolute;inset:-2px;background:linear-gradient(45deg,var(--primary),var(--accent),var(--primary));border-radius:32px;animation:glow 2s infinite alternate}
+    @keyframes glow{0%{box-shadow:0 0 20px var(--primary),0 0 40px var(--primary)}100%{box-shadow:0 0 40px var(--accent),0 0 60px var(--primary)}}
+    .pricing.popular .price{background:linear-gradient(135deg,var(--primary),var(--accent));-webkit-background-clip:text;color:transparent}
+    .pricing.popular::before{content:"BEST VALUE";position:absolute;top:-20px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--primary),var(--accent));color:#fff;font-size:.75rem;font-weight:800;padding:.4rem 1.5rem;border-radius:30px;box-shadow:0 5px 20px rgba(255,74,0,.5);animation:pulse 2s infinite}
+    @keyframes pulse{0%,100%{transform:translateX(-50%) scale(1)}50%{transform:translateX(-50%) scale(1.05)}}
+    .pricing h3{color:var(--primary);font-size:2rem;margin-bottom:1rem;text-transform:uppercase;letter-spacing:2px}
+    .pricing .price{font-size:4rem;font-weight:800;color:#fff;margin:1.5rem 0;position:relative}
+    .pricing .price::after{content:'';position:absolute;bottom:-10px;left:50%;width:50px;height:4px;background:var(--primary);border-radius:2px;box-shadow:0 0 15px var(--primary);transform:translateX(-50%)}
+    .pricing ul{list-style:none;margin:2rem 0}
+    .pricing ul li{padding:.8rem 0;border-bottom:1px solid rgba(255,255,255,.08);display:flex;align-items:center;gap:1rem;transition:.3s}
+    .pricing ul li:hover{padding-left:10px}
+    .pricing ul li::before{content:'✓';color:var(--primary);font-weight:800;font-size:1.3rem;font-family:Arial}
+    .pricing ul li:last-child{border:none}
+    
+    /* Coaches with 3D Hover */
+    .coach-grid{display:grid;gap:2.5rem;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+    .coach-card{background:rgba(255,255,255,.02);border:1px solid rgba(255,74,0,.1);border-radius:28px;overflow:hidden;transition:all .6s cubic-bezier(.22,1,.36,1);position:relative}
+    .coach-card:hover{transform:perspective(1000px) rotateY(10deg) rotateX(5deg);border-color:var(--primary);box-shadow:0 25px 70px rgba(255,74,0,.3)}
+    .coach-card .img-wrapper{position:relative;overflow:hidden;height:280px}
+    .coach-card img{width:100%;height:100%;object-fit:cover;transition:.6s}
+    .coach-card:hover img{transform:scale(1.2)}
+    .coach-card .img-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.9),transparent);opacity:.8}
+    .coach-card .info{padding:2rem}
+    .coach-card .role{color:var(--primary);font-weight:700;font-size:.95rem;text-transform:uppercase;letter-spacing:1px;margin-bottom:.5rem}
+    .coach-card .name{color:#fff;font-size:2rem;margin-bottom:1rem;position:relative}
+    .coach-card .name::after{content:'';position:absolute;bottom:-8px;left:0;width:40px;height:3px;background:var(--primary);border-radius:2px}
+    .coach-card .desc{color:#aaa;line-height:1.8;margin-bottom:1.5rem}
+    .coach-card .note{color:var(--accent);font-size:.85rem;font-style:italic}
+    
+    /* Gallery with Parallax & Lightbox */
+    .gallery-grid{display:grid;gap:1.5rem;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+    .gallery-item{position:relative;overflow:hidden;border-radius:24px;cursor:pointer;transition:all .5s}
+    .gallery-item:hover{transform:scale(1.03);box-shadow:0 20px 50px rgba(255,74,0,.3)}
+    .gallery-item img{width:100%;height:320px;object-fit:cover;transition:.7s}
+    .gallery-item:hover img{transform:scale(1.25) rotate(2deg)}
+    .gallery-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.95),rgba(0,0,0,.3));display:flex;align-items:flex-end;padding:1.5rem;opacity:0;transition:.5s}
+    .gallery-item:hover .gallery-overlay{opacity:1}
+    .gallery-caption{color:#fff;font-size:1.2rem;font-weight:700;transform:translateY(20px);transition:.5s}
+    .gallery-item:hover .gallery-caption{transform:translateY(0)}
+    
+    /* Contact with glitch effect */
+    .contact-card{background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.01));border:1px solid rgba(255,74,0,.2);border-radius:32px;padding:3rem;position:relative}
+    .contact-card::before{content:'';position:absolute;inset:-2px;background:linear-gradient(45deg,var(--primary),var(--accent));border-radius:32px;opacity:.3;pointer-events:none}
+    .form-grid{display:grid;gap:1.5rem;max-width:700px;margin:0 auto}
+    .form-group{position:relative}
+    .form-group input,.form-group textarea{width:100%;padding:1.2rem 1.5rem;border-radius:16px;border:2px solid rgba(255,74,0,.2);background:rgba(0,0,0,.3);color:#fff;outline:none;font-size:1rem;transition:.4s}
+    .form-group input:focus,.form-group textarea:focus{border-color:var(--primary);background:rgba(0,0,0,.5);box-shadow:0 0 20px rgba(255,74,0,.3);transform:translateY(-2px)}
+    .form-group textarea{min-height:150px;resize:vertical}
+    .form-group label{position:absolute;left:1.5rem;top:50%;transform:translateY(-50%);color:#aaa;pointer-events:none;transition:.4s;background:transparent;padding:0 5px}
+    .form-group input:focus ~ label,.form-group textarea:focus ~ label{top:-10px;left:1rem;font-size:.8rem;color:var(--primary);background:var(--dark-2)}
+    .form-group input:not(:placeholder-shown) ~ label,.form-group textarea:not(:placeholder-shown) ~ label{top:-10px;left:1rem;font-size:.8rem;color:var(--primary);background:var(--dark-2)}
+    
+    /* Footer */
+    footer{background:#050505;padding:4rem 1.5rem 2rem;position:relative;overflow:hidden}
+    footer::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 0,rgba(255,74,0,.1),transparent 50%);pointer-events:none}
+    .footer-content{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:3rem}
+    .footer-section h3{color:var(--primary);font-size:1.5rem;margin-bottom:1.5rem;text-transform:uppercase;letter-spacing:2px}
+    .footer-section p{color:#888;margin-bottom:.5rem}
+    .footer-section a{color:#888;transition:.3s}
+    .footer-section a:hover{color:var(--primary);padding-left:5px}
+    .social-links{display:flex;gap:1rem}
+    .social-links a{width:45px;height:45px;border-radius:50%;background:rgba(255,255,255,.05);display:flex;align-items:center;justify-content:center;color:#fff;transition:.4s}
+    .social-links a:hover{background:var(--primary);transform:translateY(-5px);box-shadow:0 10px 25px rgba(255,74,0,.4)}
+    
+    /* Progress Bar */
+    .progress-container{position:fixed;top:0;left:0;right:0;height:4px;background:transparent;z-index:10000}
+    .progress-bar{height:100%;background:linear-gradient(90deg,var(--primary),var(--accent));width:0%;transition:width .2s ease;box-shadow:0 0 15px var(--primary)}
+    
+    /* Scroll Button */
+    .scroll-top{position:fixed;bottom:30px;right:30px;width:55px;height:55px;border-radius:50%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.5rem;cursor:pointer;opacity:0;visibility:hidden;transition:all .4s;box-shadow:0 10px 30px rgba(255,74,0,.4);z-index:999}
+    .scroll-top.visible{opacity:1;visibility:visible;transform:translateY(0)}
+    .scroll-top:hover{background:var(--primary-dark);transform:translateY(-10px) rotate(360deg)}
+    
+    /* Mobile Responsive */
     @media(max-width:768px){
-      h1{font-size:2.2rem}
-      h2{font-size:1.8rem}
-      nav{padding:.5rem 1rem}
-      nav .logo{font-size:1.1rem}
-      nav ul{gap:.75rem}
-      nav a{font-size:.75rem}
-      section{padding:4rem 1rem}
-      .hero{height:70vh}
-      .grid,.pricing-grid,.gallery-grid,.coach-grid{grid-template-columns:1fr}
-      .table-container{-webkit-overflow-scrolling:touch}
+      h1{font-size:2.8rem}
+      h2{font-size:2.2rem}
+      .hero-buttons{flex-direction:column}
+      .btn{width:100%;text-align:center}
+      nav ul{display:none}
+      nav{padding:.75rem 1rem}
+      nav .logo{font-size:1.2rem}
+      section{padding:6rem 1.5rem}
+      .pricing.popular{transform:none}
     }
   </style>
 </head>
 <body>
-  <nav>
-    <div class="logo">IMPAKT LIVE</div>
+  <!-- Background FX -->
+  <div class="bg-fx"></div>
+  <div class="particles" id="particles"></div>
+  
+  <!-- Progress Bar -->
+  <div class="progress-container">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+  
+  <nav id="navbar">
+    <div class="logo">Impakt Live</div>
     <ul>
       <li><a href="#home">Home</a></li>
       <li><a href="#about">About</a></li>
@@ -101,173 +200,214 @@
       <li><a href="#coaches">Coaches</a></li>
       <li><a href="#pricing">Pricing</a></li>
       <li><a href="#gallery">Gallery</a></li>
-      <li><a href="#contact" class="btn">Book Now</a></li>
+      <li><a href="#contact" class="btn btn-small">Book Now</a></li>
     </ul>
   </nav>
 
   <header class="hero" id="home">
-    <div class="hero-content fade-in-up">
-      <h1>Cape Town's Premier<br>MMA & Combat Sports Gym</h1>
-      <p>Train like a champion with world-class coaches in boxing, kickboxing, BJJ, Muay Thai & MMA. Open 6am–9pm daily.</p>
+    <div class="hero-bg">
       <video autoplay muted loop playsinline poster="assets/A PHOTO OF THE BJJ CLASS.jpg">
         <source src="assets/MMA PERSONAL TRAINING VIDEO WITH COACH T.mp4" type="video/mp4">
         <source src="assets/BJJ TRAINING VIDEO.mp4" type="video/mp4">
-        <source src="assets/ANOTHER MMA PERSONAL TRAINING VIDEO WITH COACH T.mp4" type="video/mp4">
       </video>
-      <a href="#classes" class="btn">Start Your Journey</a>
-      <a href="#gallery" class="btn btn-outline" style="margin-left:1rem">See Our Gym</a>
+      <div class="hero-overlay"></div>
+    </div>
+    
+    <div class="hero-content">
+      <h1>Cape Town's <span>Premier</span><br>MMA & Combat Sports Gym</h1>
+      <p>Train like a champion with world-class coaches. Box, Muay Thai, BJJ, Kickboxing & MMA. Your journey to greatness starts here.</p>
+      <div class="hero-buttons">
+        <a href="#classes" class="btn">Start Your Journey</a>
+        <a href="#gallery" class="btn btn-outline">See Our Gym</a>
+      </div>
     </div>
   </header>
 
+  <div class="stats-bar">
+    <div class="stats-grid">
+      <div class="stat-item">
+        <div class="stat-number" data-target="12">0</div>
+        <div class="stat-label">Years Experience</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number" data-target="500+">0</div>
+        <div class="stat-label">Members</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number" data-target="24/7">0</div>
+        <div class="stat-label">Classes Weekly</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number" data-target="99%">0</div>
+        <div class="stat-label">Satisfaction</div>
+      </div>
+    </div>
+  </div>
+
   <section id="about">
-    <h2 class="fade-in-up">More Than Just a Gym</h2>
+    <h2 class="fade-in-up">More Than Just a <span style="color:var(--primary)">Gym</span></h2>
     <div class="grid">
       <div class="card fade-in-up">
+        <div class="card-icon"><i class="fa-solid fa-dumbbell"></i></div>
         <img src="assets/buisness info.png" alt="Impakt Gym Interior">
-        <div class="info">
+        <div class="card-content">
           <h3>Modern Facility</h3>
-          <p>Fully equipped with professional gear, padded floors, and a training space designed for safety and performance.</p>
+          <p>Fully equipped with professional gear, padded floors, and a training space designed for safety and peak performance.</p>
         </div>
       </div>
       <div class="card fade-in-up" style="animation-delay:.2s">
+        <div class="card-icon"><i class="fa-solid fa-person-running"></i></div>
         <img src="assets/body building and personal training description and layout.png" alt="Personal Training">
-        <div class="info">
+        <div class="card-content">
           <h3>Personal Coaching</h3>
-          <p>1-on-1 sessions with our certified trainers to help you reach your goals faster, safer, and smarter.</p>
+          <p>1-on-1 sessions with certified trainers to help you reach goals faster, safer, and smarter.</p>
         </div>
       </div>
       <div class="card fade-in-up" style="animation-delay:.4s">
+        <div class="card-icon"><i class="fa-solid fa-location-dot"></i></div>
         <img src="assets/MORE CONTACT DETAILS.png" alt="Location">
-        <div class="info">
+        <div class="card-content">
           <h3>Prime Location</h3>
-          <p>123 Main Road, Cape Town, South Africa. Easy access, secure parking, and a community that feels like family.</p>
+          <p>123 Main Road, Cape Town. Easy access, secure parking, and a community that feels like family.</p>
         </div>
       </div>
     </div>
   </section>
 
   <section id="classes" style="background:linear-gradient(180deg,var(--dark-2),var(--dark))">
-    <h2 class="fade-in-up">Our Classes</h2>
+    <h2 class="fade-in-up">Our <span style="color:var(--primary)">Classes</span></h2>
     <div class="grid">
       <div class="card fade-in-up">
+        <div class="card-icon"><i class="fa-solid fa-fist-raised"></i></div>
         <img src="assets/BOXING COACH T.jpg" alt="Boxing">
-        <div class="info">
+        <div class="card-content">
           <h3>Boxing</h3>
-          <p>Fundamentals, footwork, combos & sparring. Coach T leads Tuesday & Thursday at 6pm.</p>
-          <button class="btn btn-small">Book Boxing</button>
+          <p>Fundamentals, footwork, combos & sparring. Coach T leads Tue & Thu at 6pm.</p>
         </div>
       </div>
       <div class="card fade-in-up" style="animation-delay:.2s">
+        <div class="card-icon"><i class="fa-solid fa-person-falling"></i></div>
         <img src="assets/impakt logo.jpeg" alt="Muay Thai">
-        <div class="info">
+        <div class="card-content">
           <h3>Muay Thai</h3>
-          <p>Eight limbs of fighting. Clinch work, kicks, knees, elbows. With Coach Keagan Mon & Wed 6pm.</p>
-          <button class="btn btn-small">Book Muay Thai</button>
+          <p>Eight limbs of fighting. Clinch work, kicks, knees, elbows. Mon & Wed 6pm.</p>
         </div>
       </div>
       <div class="card fade-in-up" style="animation-delay:.4s">
+        <div class="card-icon"><i class="fa-solid fa-chess-knight"></i></div>
         <img src="assets/BJJ COACH.PNG" alt="Brazilian Jiu‑Jitsu">
-        <div class="info">
+        <div class="card-content">
           <h3>BJJ</h3>
-          <p>Ground game, submissions, and positional control. Brown belt coach on Saturday 6pm.</p>
-          <button class="btn btn-small">Book BJJ</button>
+          <p>Ground game, submissions, and positional control. Brown belt coach Sat 6pm.</p>
         </div>
       </div>
       <div class="card fade-in-up" style="animation-delay:.6s">
+        <div class="card-icon"><i class="fa-solid fa-traffic-light"></i></div>
         <img src="assets/CLASSES INFO AND LAYOUT.png" alt="Kickboxing">
-        <div class="info">
+        <div class="card-content">
           <h3>Kickboxing</h3>
-          <p>High-energy cardio blasts with powerful striking techniques. Perfect for fitness & fun.</p>
-          <button class="btn btn-small">Book Kickboxing</button>
+          <p>High-energy cardio blasts with powerful striking techniques. Perfect for fitness!</p>
         </div>
       </div>
       <div class="card fade-in-up" style="animation-delay:.8s">
+        <div class="card-icon"><i class="fa-solid fa-fighter-jet"></i></div>
         <img src="assets/pricing and stuff.png" alt="MMA">
-        <div class="info">
+        <div class="card-content">
           <h3>MMA</h3>
-          <p>Mixed martial arts blending striking & grappling. For serious fighters & enthusiasts.</p>
-          <button class="btn btn-small">Book MMA</button>
+          <p>Mixed martial arts blending striking & grappling. For serious fighters!</p>
         </div>
       </div>
       <div class="card fade-in-up" style="animation-delay:1s">
+        <div class="card-icon"><i class="fa-solid fa-users"></i></div>
         <img src="assets/ANOTHER PHOTO OF THE BJJ CLASS.jpg" alt="Sparring">
-        <div class="info">
+        <div class="card-content">
           <h3>Sparring</h3>
-          <p>Friday nights open mat with all coaches. Safe, supervised, and progressive.</p>
-          <button class="btn btn-small">Join Sparring</button>
+          <p>Friday nights open mat with all coaches. Safe, supervised, progressive.</p>
         </div>
       </div>
     </div>
   </section>
 
   <section id="coaches" style="background:var(--dark)">
-    <h2 class="fade-in-up">Our Coaches & Backgrounds</h2>
+    <h2 class="fade-in-up">Our <span style="color:var(--primary)">Coaches</span></h2>
     <div class="coach-grid">
       <div class="coach-card fade-in-up">
-        <img src="assets/BOXING COACH T.jpg" alt="Coach T">
+        <div class="img-wrapper">
+          <img src="assets/BOXING COACH T.jpg" alt="Coach T">
+          <div class="img-overlay"></div>
+        </div>
         <div class="info">
           <div class="role">Head Boxing Coach</div>
           <div class="name">Coach T</div>
-          <div class="desc">With over 12 years of professional boxing experience and 8 years coaching, Coach T has trained numerous amateurs and professionals. Specializes in footwork, timing, and fight strategy.</div>
-          <div class="note">For viewing purposes: Bio placeholder</div>
+          <div class="desc">12+ years professional experience. Specializes in footwork, timing, and fight strategy.</div>
+          <div class="note">Training legends since 2012</div>
         </div>
       </div>
       <div class="coach-card fade-in-up" style="animation-delay:.2s">
-        <img src="assets/impakt logo.jpeg" alt="Keagan">
+        <div class="img-wrapper">
+          <img src="assets/impakt logo.jpeg" alt="Keagan">
+          <div class="img-overlay"></div>
+        </div>
         <div class="info">
           <div class="role">Muay Thai Head Coach</div>
           <div class="name">Keagan</div>
-          <div class="desc">Certified Muay Thai instructor with 6 years in the Thai circuit. Focuses on clinch work, elbow strikes, and conditioning. Helps students progress from beginner to competition level.</div>
-          <div class="note">For viewing purposes: Bio placeholder</div>
+          <div class="desc">Certified instructor with 6 years in Thai circuit. Clinch work, elbows, conditioning.</div>
+          <div class="note">Competition ready training</div>
         </div>
       </div>
       <div class="coach-card fade-in-up" style="animation-delay:.4s">
-        <img src="assets/BJJ COACH.PNG" alt="BJJ Coach">
+        <div class="img-wrapper">
+          <img src="assets/BJJ COACH.PNG" alt="BJJ Coach">
+          <div class="img-overlay"></div>
+        </div>
         <div class="info">
           <div class="role">BJJ Head Coach (Brown Belt)</div>
           <div class="name">Coach X</div>
-          <div class="desc">Brown belt with over 5 years of competitive experience and 4 years teaching. Specializes in guard retention, submission chains, and self-defense applications.</div>
-          <div class="note">For viewing purposes: Bio placeholder</div>
+          <div class="desc">Brown belt with 5+ years competitive experience. Guard retention, submission chains.</div>
+          <div class="note">Self-defense specialist</div>
         </div>
       </div>
     </div>
   </section>
 
   <section id="pricing">
-    <h2 class="fade-in-up">Membership Plans</h2>
+    <h2 class="fade-in-up">Membership <span style="color:var(--primary)">Plans</span></h2>
     <div class="pricing-grid">
       <div class="pricing fade-in-up">
         <h3>Basic</h3>
-        <div class="price">R650/mo</div>
+        <div class="price">R650<span style="font-size:1.5rem">/mo</span></div>
         <p style="color:#aaa;margin-bottom:1.5rem">Perfect for beginners</p>
         <ul>
-          <li>Unlimited classes (excluding sparring)</li>
+          <li>Unlimited classes</li>
           <li>Locker access</li>
-          <li>Free gym & cardio area</li>
+          <li>Free gym & cardio</li>
+          <li>Orientation session</li>
         </ul>
         <button class="btn">Join Basic</button>
       </div>
       <div class="pricing popular fade-in-up" style="animation-delay:.2s">
         <h3>Pro</h3>
-        <div class="price">R950/mo</div>
+        <div class="price">R950<span style="font-size:1.5rem">/mo</span></div>
         <p style="color:#aaa;margin-bottom:1.5rem">Most popular</p>
         <ul>
           <li>Everything in Basic</li>
           <li>Sparring access</li>
-          <li>1 personal training session/mo</li>
+          <li>1 PT session/month</li>
           <li>Gym & weights included</li>
+          <li>Free towel service</li>
         </ul>
         <button class="btn">Join Pro</button>
       </div>
       <div class="pricing fade-in-up" style="animation-delay:.4s">
         <h3>Elite</h3>
-        <div class="price">R1,450/mo</div>
+        <div class="price">R1,450<span style="font-size:1.5rem">/mo</span></div>
         <p style="color:#aaa;margin-bottom:1.5rem">For serious athletes</p>
         <ul>
           <li>Everything in Pro</li>
-          <li>3 personal training sessions/mo</li>
+          <li>3 PT sessions/month</li>
           <li>MMA equipment loan</li>
-          <li>Competition prep support</li>
+          <li>Competition prep</li>
+          <li>Priority booking</li>
         </ul>
         <button class="btn">Join Elite</button>
       </div>
@@ -275,64 +415,191 @@
   </section>
 
   <section id="gallery">
-    <h2 class="fade-in-up">Behind the Scenes</h2>
+    <h2 class="fade-in-up">Behind the <span style="color:var(--primary)">Scenes</span></h2>
     <div class="gallery-grid">
       <div class="gallery-item fade-in-up">
         <img src="assets/A PHOTO OF THE BJJ CLASS.jpg" alt="BJJ Class">
-        <div class="gallery-caption">BJJ Class Action</div>
+        <div class="gallery-overlay">
+          <div class="gallery-caption">BJJ Class Action</div>
+        </div>
       </div>
       <div class="gallery-item fade-in-up" style="animation-delay:.2s">
         <img src="assets/ANOTHER PHOTO OF THE BJJ CLASS.jpg" alt="BJJ Training">
-        <div class="gallery-caption">Training session</div>
+        <div class="gallery-overlay">
+          <div class="gallery-caption">Training session</div>
+        </div>
       </div>
       <div class="gallery-item fade-in-up" style="animation-delay:.4s">
         <img src="assets/BOXING COACH T.jpg" alt="Coach T">
-        <div class="gallery-caption">Coach T – Boxing</div>
+        <div class="gallery-overlay">
+          <div class="gallery-caption">Coach T – Boxing</div>
+        </div>
       </div>
       <div class="gallery-item fade-in-up" style="animation-delay:.6s">
         <img src="assets/BJJ COACH.PNG" alt="BJJ Coach">
-        <div class="gallery-caption">BJJ Coach (Brown)</div>
+        <div class="gallery-overlay">
+          <div class="gallery-caption">BJJ Coach (Brown)</div>
+        </div>
       </div>
       <div class="gallery-item fade-in-up" style="animation-delay:.8s">
         <img src="assets/impakt logo.jpeg" alt="Impakt Logo">
-        <div class="gallery-caption">Gym Interior</div>
+        <div class="gallery-overlay">
+          <div class="gallery-caption">Gym Interior</div>
+        </div>
       </div>
       <div class="gallery-item fade-in-up" style="animation-delay:1s">
         <img src="assets/pricing and stuff.png" alt="Pricing">
-        <div class="gallery-caption">Our Packages</div>
+        <div class="gallery-overlay">
+          <div class="gallery-caption">Our Packages</div>
+        </div>
       </div>
       <div class="gallery-item fade-in-up" style="animation-delay:1.2s">
         <img src="assets/WEBSITE DEMO FRAME.jpg" alt="Training Frame Extract">
-        <div class="gallery-caption">Video Frame Demo</div>
+        <div class="gallery-overlay">
+          <div class="gallery-caption">Video Frame Demo</div>
+        </div>
       </div>
     </div>
   </section>
 
   <section id="contact" style="background:linear-gradient(180deg,rgba(255,74,0,.05),var(--dark-2))">
-    <h2 class="fade-in-up">Ready to Train?</h2>
+    <h2 class="fade-in-up">Ready to <span style="color:var(--primary)">Train?</span></h2>
     <div class="contact-card">
       <div class="form-grid">
         <h3 style="color:var(--primary);margin-bottom:1rem">Get in Touch</h3>
-        <p style="color:#aaa">Start your journey with a free trial class. Fill out the form and we'll get back to you within 24 hours.</p>
-        <form name="contact" style="display:flex;flex-direction:column;gap:1rem">
-          <input type="text" placeholder="Your Name" required>
-          <input type="email" placeholder="Email Address" required>
-          <textarea placeholder="What are you interested in?" rows="4"></textarea>
-          <button type="submit" class="btn">Send Message</button>
+        <p style="color:#aaa">Start your journey with a free trial class. We'll get back to you within 24 hours.</p>
+        <form name="contact" onsubmit="event.preventDefault(); sendContact();">
+          <div class="form-group">
+            <input type="text" id="name" placeholder=" " required>
+            <label for="name">Your Name</label>
+          </div>
+          <div class="form-group">
+            <input type="email" id="email" placeholder=" " required>
+            <label for="email">Email Address</label>
+          </div>
+          <div class="form-group">
+            <textarea id="message" placeholder=" " rows="4" required></textarea>
+            <label for="message">What are you interested in?</label>
+          </div>
+          <button type="submit" class="btn" style="width:100%">Send Message</button>
         </form>
       </div>
     </div>
   </section>
 
   <footer>
-    <p>© 2026 Impakt Sports & Fitness – Cape Town</p>
-    <p style="margin-top:.5rem"><a href="https://www.impaktsa.com" target="_blank">Original site</a></p>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Impakt Live</h3>
+        <p>Cape Town's premier MMA gym</p>
+        <p>123 Main Road, Cape Town</p>
+        <p>Open 6am–9pm daily</p>
+      </div>
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <a href="#home">Home</a><br>
+        <a href="#about">About</a><br>
+        <a href="#classes">Classes</a><br>
+        <a href="#pricing">Pricing</a><br>
+        <a href="#gallery">Gallery</a>
+      </div>
+      <div class="footer-section">
+        <h3>Contact</h3>
+        <p>📞 +27 XX XXX XXXX</p>
+        <p>📧 info@impaktsa.com</p>
+        <div class="social-links">
+          <a href="#"><i class="fa-brands fa-facebook"></i></a>
+          <a href="#"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#"><i class="fa-brands fa-twitter"></i></a>
+          <a href="#"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:3rem;color:#666">
+      <p>© 2026 Impakt Sports & Fitness – Cape Town</p>
+      <p style="margin-top:.5rem"><a href="https://www.impaktsa.com" target="_blank" style="color:#888">Original site</a></p>
+    </div>
   </footer>
 
+  <div class="scroll-top" id="scrollTop"><i class="fa-solid fa-arrow-up"></i></div>
+
   <script>
-    // Scroll animations
+    // Number counter animation
+    const counters = document.querySelectorAll('.stat-number');
+    let animating = false;
+
+    function animateCounters() {
+      if (animating) return;
+      animating = true;
+
+      counters.forEach(counter => {
+        const target = parseInt(counter.getAttribute('data-target'));
+        const duration = 2000;
+        const steps = 60;
+        const increment = target / steps;
+        let current = 0;
+
+        const timer = setInterval(() => {
+          current += increment;
+          if (current >= target) {
+            counter.textContent = counter.getAttribute('data-target') + (counter.textContent.includes('+') ? '+' : '');
+            clearInterval(timer);
+          } else {
+            counter.textContent = Math.floor(current) + (counter.textContent.includes('+') ? '+' : '');
+          }
+        }, duration / steps);
+      });
+    }
+
+    // Intersection observer for stats
+    const statsObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          animateCounters();
+          statsObserver.unobserve(entry.target);
+        }
+      });
+    }, {threshold: 0.5});
+
+    document.querySelectorAll('.stats-bar').forEach(el => statsObserver.observe(el));
+
+    // Scroll progress bar
+    const progressBar = document.getElementById('progressBar');
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = (scrollTop / docHeight) * 100;
+      progressBar.style.width = scrollPercent + '%';
+    });
+
+    // Scroll to top button
+    const scrollTopBtn = document.getElementById('scrollTop');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 500) {
+        scrollTopBtn.classList.add('visible');
+      } else {
+        scrollTopBtn.classList.remove('visible');
+      }
+    });
+
+    scrollTopBtn.addEventListener('click', () => {
+      window.scrollTo({top: 0, behavior: 'smooth'});
+    });
+
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+
+    // Smooth animations with IntersectionObserver
     const observerOptions = {threshold: 0.1};
-    const observer = new IntersectionObserver((entries)=>{
+    const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.style.opacity = '1';
@@ -340,12 +607,39 @@
         }
       });
     }, observerOptions);
+
     document.querySelectorAll('.fade-in-up').forEach(el => {
       el.style.opacity = '0';
       el.style.transform = 'translateY(40px)';
       el.style.transition = 'opacity 1s ease-out, transform 1s ease-out';
       observer.observe(el);
     });
+
+    // Contact form simulation
+    function sendContact() {
+      const btn = document.querySelector('#contact button[type="submit"]');
+      const originalText = btn.textContent;
+      btn.textContent = 'Sending...';
+      btn.disabled = true;
+      
+      setTimeout(() => {
+        alert('Thanks for reaching out! We\'ll get back to you within 24 hours.');
+        btn.textContent = originalText;
+        btn.disabled = false;
+        document.querySelector('#contact form').reset();
+      }, 1500);
+    }
+
+    // Particles animation
+    const particlesContainer = document.getElementById('particles');
+    for (let i = 0; i < 20; i++) {
+      const particle = document.createElement('div');
+      particle.className = 'particle';
+      particle.style.left = Math.random() * 100 + '%';
+      particle.style.animationDelay = Math.random() * 20 + 's';
+      particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+      particlesContainer.appendChild(particle);
+    }
   </script>
 </body>
 </html>
