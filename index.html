@@ -370,24 +370,32 @@
     function toggleAI(){
       const widget=document.getElementById('aiWidget');
       const btn=document.querySelector('.ai-button');
-      widget.classList.toggle('active');
-      if(widget.classList.contains('active')) btn.classList.add('active');
-      else btn.classList.remove('active');
+      if(widget && btn) {
+        widget.classList.toggle('active');
+        if(widget.classList.contains('active')) btn.classList.add('active');
+        else btn.classList.remove('active');
+        console.log('AI widget toggled:', widget.classList.contains('active'));
+      }
     }
     function sendAI(){
-      const txt=document.getElementById('chatInput').value.trim();
-      if(!txt) return;
+      const input=document.getElementById('chatInput');
       const log=document.getElementById('chatLog');
-      log.innerHTML+=`<div class="ai-msg you"><span>You:</span> ${txt}</div>`;
+      if(!input || !log) return;
+      const txt=input.value.trim();
+      if(!txt) return;
+      const youMsg=`<div class="ai-msg you"><span>You:</span> ${txt}</div>`;
+      log.innerHTML+=youMsg;
+      log.scrollTop=log.scrollHeight;
       setTimeout(()=>{
         let reply="Thanks for your interest in Impakt Live! Could you tell me more about your goals?";
         if(txt.toLowerCase().includes('price')||txt.toLowerCase().includes('cost')) reply="Our plans start at R650/month. Pro (R950) includes sparring access & 1 personal training session.";
         else if(txt.toLowerCase().includes('class')||txt.toLowerCase().includes('schedule')) reply="Classes run Mon–Sat at 6pm: Muay Thai, Boxing, BJJ. Sparring on Fridays.";
         else if(txt.toLowerCase().includes('coach')||txt.toLowerCase().includes('trainer')) reply="We have Coach T (Boxing), Keagan (Muay Thai), and our BJJ coach (Brown Belt).";
-        log.innerHTML+=`<div class="ai-msg impakt"><span>Impakt‑AI:</span> ${reply}</div>`;
+        const aiMsg=`<div class="ai-msg impakt"><span>Impakt‑AI:</span> ${reply}</div>`;
+        log.innerHTML+=aiMsg;
+        log.scrollTop=log.scrollHeight;
       },600);
-      document.getElementById('chatInput').value='';
-      log.scrollTop=log.scrollHeight;
+      input.value='';
     }
   </script>
 </body>
